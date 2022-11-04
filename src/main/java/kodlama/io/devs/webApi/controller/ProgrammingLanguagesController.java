@@ -3,10 +3,14 @@ package kodlama.io.devs.webApi.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.DeleteProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
 @RestController()
@@ -24,4 +28,20 @@ public class ProgrammingLanguagesController {
 	public List<ProgrammingLanguage> getAll(){
 		return this.programmingLanguageService.getAll();
 	}
+	
+	@PostMapping("add")
+	public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) {
+		this.programmingLanguageService.add(createProgrammingLanguageRequest);
+	}
+	
+	@PostMapping("delete")
+	public void delete(DeleteProgrammingLanguageRequest deleteProgrammingLanguageRequest) {
+		this.programmingLanguageService.delete(deleteProgrammingLanguageRequest);
+	}
+	
+	@PostMapping("update")
+	public void update(UpdateProgrammingLanguageRequest updateProgrammingLanguageRequest) {
+		this.programmingLanguageService.update(updateProgrammingLanguageRequest);
+	}
+	
 }

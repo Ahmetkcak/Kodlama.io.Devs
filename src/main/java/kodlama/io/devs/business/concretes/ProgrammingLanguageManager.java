@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlama.io.devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.DeleteProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.dataAccess.abstracts.ProgrammingLanguageRepository;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
@@ -27,4 +30,37 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService{
 		return this.programmingLanguageRepository.findAll();
 	}
 
+
+
+	@Override
+	public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) {
+		ProgrammingLanguage programmingLanguage = new ProgrammingLanguage();
+		programmingLanguage.setName(createProgrammingLanguageRequest.getName());
+		if(createProgrammingLanguageRequest.getName()=="") {
+			System.out.println("Programlama dilini ismi boş olamaz.");
+		}
+		else if(this.programmingLanguageRepository.getByName(createProgrammingLanguageRequest.getName()) == null) {
+			System.out.println("Bu isim programlama dili mevcut.");
+		}
+			
+		this.programmingLanguageRepository.save(programmingLanguage);
+		
+	}
+
+
+
+	@Override
+	public void update(UpdateProgrammingLanguageRequest updateProgrammingLanguageRequest) {
+		ProgrammingLanguage programmingLanguage = this.programmingLanguageRepository.getById(updateProgrammingLanguageRequest.getId());
+		programmingLanguage.setName(updateProgrammingLanguageRequest.getName());
+		this.programmingLanguageRepository.save(programmingLanguage);
+	}
+
+
+
+	@Override
+	public void delete(DeleteProgrammingLanguageRequest deleteProgrammingLanguageRequest) {
+		this.programmingLanguageRepository.deleteById(deleteProgrammingLanguageRequest.getId());
+		
+	}
 }
