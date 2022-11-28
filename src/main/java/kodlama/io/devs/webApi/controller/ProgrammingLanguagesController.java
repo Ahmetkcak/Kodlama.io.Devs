@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.devs.business.abstracts.ProgrammingLanguageService;
-import kodlama.io.devs.business.requests.CreateProgrammingLanguageRequest;
-import kodlama.io.devs.business.requests.DeleteProgrammingLanguageRequest;
-import kodlama.io.devs.business.requests.UpdateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguage.CreateProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguage.DeleteProgrammingLanguageRequest;
+import kodlama.io.devs.business.requests.programmingLanguage.UpdateProgrammingLanguageRequest;
 import kodlama.io.devs.entities.concretes.ProgrammingLanguage;
 
 @RestController()

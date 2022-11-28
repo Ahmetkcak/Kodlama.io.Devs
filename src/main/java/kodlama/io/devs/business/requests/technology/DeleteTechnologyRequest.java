@@ -1,4 +1,4 @@
-package kodlama.io.devs.business.requests;
+package kodlama.io.devs.business.requests.technology;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeleteProgrammingLanguageRequest {
+public class DeleteTechnologyRequest {
 	private int id;
 }
