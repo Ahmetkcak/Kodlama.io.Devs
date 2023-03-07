@@ -1,5 +1,6 @@
 package Kodlama.io.Devs.entities;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,12 +9,11 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "programming_languages")
+@Table(name = "language_technologies")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProgrammingLanguage {
-
+public class LanguageTechnology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,6 +22,8 @@ public class ProgrammingLanguage {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "programmingLanguage")
-    private List<LanguageTechnology> languageTechnologies;
+
+    @ManyToOne
+    @JoinColumn(name = "programming_language_id")
+    private ProgrammingLanguage programmingLanguage;
 }
