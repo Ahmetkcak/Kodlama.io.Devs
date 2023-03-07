@@ -5,7 +5,8 @@ import Kodlama.io.Devs.business.requests.CreateProgrammingLanguageRequest;
 import Kodlama.io.Devs.business.requests.UpdateProgrammingLanguageRequest;
 import Kodlama.io.Devs.business.responses.GetAllProgrammingLanguageResponse;
 import Kodlama.io.Devs.business.responses.GetByIdProgrammingLanguageResponse;
-import Kodlama.io.Devs.core.mappers.ModelMapperService;
+import Kodlama.io.Devs.business.rules.ProgrammingLanguageBusinessRules;
+import Kodlama.io.Devs.core.utilities.mappers.ModelMapperService;
 import Kodlama.io.Devs.dataAccess.ProgrammingLanguageRepository;
 import Kodlama.io.Devs.entities.ProgrammingLanguage;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class ProgrammingLanguageManager implements ProgrammingLanguageService {
     private ProgrammingLanguageRepository programmingLanguageRepository;
     private ModelMapperService modelMapperService;
+    private ProgrammingLanguageBusinessRules programmingLanguageBusinessRules;
     @Override
     public List<GetAllProgrammingLanguageResponse> getAll() {
         List<ProgrammingLanguage> programmingLanguages = this.programmingLanguageRepository.findAll();
@@ -37,6 +39,7 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
 
     @Override
     public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) {
+        this.programmingLanguageBusinessRules.checkIfProgrammingLanguageNameExist(createProgrammingLanguageRequest.getName());
         ProgrammingLanguage programmingLanguage = this.modelMapperService.forRequest().map(createProgrammingLanguageRequest,ProgrammingLanguage.class);
         this.programmingLanguageRepository.save(programmingLanguage);
     }

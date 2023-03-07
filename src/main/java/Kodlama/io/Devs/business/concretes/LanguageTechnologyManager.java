@@ -3,7 +3,7 @@ package Kodlama.io.Devs.business.concretes;
 import Kodlama.io.Devs.business.abstracts.LanguageTechnologyService;
 import Kodlama.io.Devs.business.requests.CreateLanguageTechnologyRequest;
 import Kodlama.io.Devs.business.responses.GetAllLanguageTechnologyResponse;
-import Kodlama.io.Devs.core.mappers.ModelMapperService;
+import Kodlama.io.Devs.core.utilities.mappers.ModelMapperService;
 import Kodlama.io.Devs.dataAccess.LanguageTechnologyRepository;
 import Kodlama.io.Devs.entities.LanguageTechnology;
 import lombok.AllArgsConstructor;

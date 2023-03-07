@@ -1,4 +1,4 @@
-package Kodlama.io.Devs.core.mappers;
+package Kodlama.io.Devs.core.utilities.mappers;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

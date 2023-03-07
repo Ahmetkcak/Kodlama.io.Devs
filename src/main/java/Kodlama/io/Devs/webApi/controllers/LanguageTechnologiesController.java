@@ -3,6 +3,7 @@ package Kodlama.io.Devs.webApi.controllers;
 import Kodlama.io.Devs.business.abstracts.LanguageTechnologyService;
 import Kodlama.io.Devs.business.requests.CreateLanguageTechnologyRequest;
 import Kodlama.io.Devs.business.responses.GetAllLanguageTechnologyResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class LanguageTechnologiesController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public void add(@RequestBody CreateLanguageTechnologyRequest createLanguageTechnologyRequest){
+    public void add(@RequestBody @Valid CreateLanguageTechnologyRequest createLanguageTechnologyRequest){
         this.languageTechnologyService.add(createLanguageTechnologyRequest);
     }
 }
