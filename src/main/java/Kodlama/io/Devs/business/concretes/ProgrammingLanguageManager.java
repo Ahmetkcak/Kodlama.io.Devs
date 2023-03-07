@@ -1,7 +1,10 @@
 package Kodlama.io.Devs.business.concretes;
 
 import Kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+import Kodlama.io.Devs.business.requests.CreateProgrammingLanguageRequest;
+import Kodlama.io.Devs.business.requests.UpdateProgrammingLanguageRequest;
 import Kodlama.io.Devs.business.responses.GetAllProgrammingLanguageResponse;
+import Kodlama.io.Devs.business.responses.GetByIdProgrammingLanguageResponse;
 import Kodlama.io.Devs.core.mappers.ModelMapperService;
 import Kodlama.io.Devs.dataAccess.ProgrammingLanguageRepository;
 import Kodlama.io.Devs.entities.ProgrammingLanguage;
@@ -23,5 +26,29 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
         List<GetAllProgrammingLanguageResponse> response =  programmingLanguages.stream().map(programmingLanguage -> this.modelMapperService.forResponse().map(programmingLanguage, GetAllProgrammingLanguageResponse.class)).collect(Collectors.toList());
 
         return response;
+    }
+
+    @Override
+    public GetByIdProgrammingLanguageResponse getById(int id) {
+        ProgrammingLanguage programmingLanguages = this.programmingLanguageRepository.findById(id).orElseThrow();
+        GetByIdProgrammingLanguageResponse response = this.modelMapperService.forResponse().map(programmingLanguages, GetByIdProgrammingLanguageResponse.class);
+        return response;
+    }
+
+    @Override
+    public void add(CreateProgrammingLanguageRequest createProgrammingLanguageRequest) {
+        ProgrammingLanguage programmingLanguage = this.modelMapperService.forRequest().map(createProgrammingLanguageRequest,ProgrammingLanguage.class);
+        this.programmingLanguageRepository.save(programmingLanguage);
+    }
+
+    @Override
+    public void delete(int id) {
+        this.programmingLanguageRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(UpdateProgrammingLanguageRequest updateProgrammingLanguageRequest) {
+        ProgrammingLanguage programmingLanguage = this.modelMapperService.forRequest().map(updateProgrammingLanguageRequest,ProgrammingLanguage.class);
+        this.programmingLanguageRepository.save(programmingLanguage);
     }
 }
